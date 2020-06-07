@@ -1,0 +1,70 @@
+html {
+  --color-bg: 19, 38, 47;
+  --color-fg: 233, 230, 255;
+  --color-primary: 44, 99, 115;
+  --color-secondary: 129, 141, 146;
+  --color-accent: 237, 71, 97;
+  --color-highlight: 237, 71, 97;
+
+  --color-bg-extreme: 0, 2, 3;
+  --color-fg-extreme: 247, 245, 255;
+
+  --color-success: 84, 85, 100;
+  --color-info: 187, 85, 100;
+  --color-warn: 28, 85, 100;
+  --color-error: 255, 38, 67;
+}
+
+body {
+  background-color: rgb(var(--color-bg));
+  color: rgb(var(--color-fg));
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+p {
+  margin: 0.4em 0;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  color: rgb(var(--color-secondary));
+  font-family: "Times New Roman", Times, serif;
+}
+
+h1 {
+  font-size: 1.5em;
+  margin: 0.7em 0;
+}
+
+h2 {
+  font-size: 1.4em;
+  margin: 0.65em 0;
+}
+
+h3 {
+  font-size: 1.35em;
+  margin: 0.6em 0;
+}
+
+h4 {
+  font-size: 1.3em;
+  margin: 0.55em 0;
+}
+
+h5 {
+  font-size: 1.25em;
+  margin: 0.5em 0;
+}
+
+h6 {
+  font-size: 1.2em;
+  margin: 0.45em 0;
+}
+
+a {
+  color: inherit;
+}

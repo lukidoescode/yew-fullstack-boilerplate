@@ -1,0 +1,55 @@
+& {
+  margin: 5px 7px;
+  border: 1px solid rgba(var(--color-bg), 0.5);
+  border-radius: 3px;
+  padding: 5px;
+  background-color: rgba(var(--color-bg), 0.1);
+}
+
+form {
+  display: grid;
+  grid-template-columns: 1fr;
+  column-gap: 15px;
+  row-gap: 10px;
+}
+
+form label {
+  align-self: center;
+}
+
+form input {
+  align-self: center;
+  background: rgba(var(--color-fg), 0.5);
+  padding: 2px 5px;
+  border: none;
+  border-bottom: 1px solid rgba(var(--color-bg), 0.5);
+}
+
+form input.invalid {
+  background: rgba(var(--color-error), 0.5);
+}
+
+form input::placeholder {
+  color: rgba(0, 0, 0, 0);
+}
+
+form button {
+  border: 1px solid rgba(var(--color-bg), 0.5);
+  color: rgb(var(--color-fg));
+  background-color: rgb(var(--color-primary));
+}
+
+@media (min-width: 400px) {
+  form {
+    grid-template-columns: max-content 1fr;
+  }
+  form label {
+    grid-column: 1;
+  }
+  form input {
+    grid-column: 2;
+  }
+  form button {
+    grid-column: span 2;
+  }
+}

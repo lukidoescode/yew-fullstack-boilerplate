@@ -1,0 +1,28 @@
+version: "2.4"
+
+services:
+  application:
+    image: "yew-fullstack/application"
+    container_name: "application-container"
+    environment:
+      - "YEW_FULLSTACK_HOST=0.0.0.0"
+      - "YEW_FULLSTACK_PORT=8080"
+      - "YEW_FULLSTACK_DB_URL=mongodb://db:27017/yew-fullstack"
+      - "YEW_FULLSTACK_DB_USER=root"
+      - "YEW_FULLSTACK_DB_PASSWORD=password"
+    ports:
+      - "8080:8080"
+    depends_on:
+      - db
+    links:
+      - db
+
+  db:
+    image: "mongo"
+    container_name: "database-container"
+    environment:
+      - MONGODB_INITDB_DATABASE=yew-fullstack_dev
+      - MONGODB_INITDB_ROOT_USERNAME=root
+      - MONGODB_INITDB_ROOT_PASSWORD=password
+    ports:
+      - "27017-27019:27017-27019"

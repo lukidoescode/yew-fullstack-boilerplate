@@ -1,0 +1,31 @@
+[package]
+name = "yew-fullstack-boilerplate-backend"
+version = "0.0.1"
+authors = ["Lukas Wagner <appdev.lukaswagner@gmail.com>"]
+edition = "2018"
+publish = false
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
+actix-rt = "1.1.0"
+actix-web = "2.0.0"
+actix-cors = "0.2.0"
+log = "0.4.8"
+env_logger = "0.7.1"
+url = "2.1.1"
+serde = {version = "1.0.106", features = ["derive"]}
+serde_json = "1.0.52"
+bson = "0.14.1"
+mongodb = "0.9.2"
+jsonwebtoken = "7.1.0"
+bcrypt = "0.7.0"
+chrono = "0.4.11"
+uuid = {version = "0.8.1", features = ["serde", "v4"]}
+
+# [target.'cfg(not(feature = "forward-frontend"))'.dependencies]
+mime_guess = "2.0.3"
+mime = "0.3.16"
+
+[features]
+forward-frontend = []

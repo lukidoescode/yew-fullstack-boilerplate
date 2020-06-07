@@ -1,0 +1,41 @@
+version: "2.4"
+
+services:
+  frontend:
+    build: "../frontend"
+    container_name: "yew-fullstack-frontend"
+    ports:
+      - "8000:8000"
+    volumes:
+      - "../frontend:/usr/src/frontend"
+
+  backend:
+    build: "../backend"
+    container_name: "yew-fullstack-backend"
+    environment:
+      - "YEW_FULLSTACK_HOST=0.0.0.0"
+      - "YEW_FULLSTACK_PORT=8080"
+      - "YEW_FULLSTACK_FORWARD_FRONTEND_URL=http://frontend:8000"
+      # - "YEW_FULLSTACK_DB_CONNSTR=mongodb://root:password@db:27017/yew-fullstack_dev?authSource=admin"
+      - "YEW_FULLSTACK_DB_CONNSTR=mongodb://db:27017"
+      - "YEW_FULLSTACK_DB_NAME=yew-fullstack_dev"
+    ports:
+      - "8080:8080"
+    volumes:
+      - "../backend:/usr/src/backend"
+    depends_on:
+      - db
+      - frontend
+    links:
+      - db
+      - frontend
+
+  db:
+    image: "mongo"
+    container_name: "yew-fullstack-database"
+    environment:
+      - MONGODB_INITDB_DATABASE=yew-fullstack_dev
+      - MONGODB_INITDB_ROOT_USERNAME=root
+      - MONGODB_INITDB_ROOT_PASSWORD=password
+    ports:
+      - "27017-27019:27017-27019"
