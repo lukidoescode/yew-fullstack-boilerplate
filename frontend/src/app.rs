@@ -1,5 +1,5 @@
-use crate::components::Layout;
-use crate::router::Router;
+use crate::components::{Layout, NotFound};
+// use crate::router::Router;
 use yew::prelude::{html, Component, ComponentLink, Html, ShouldRender};
 
 pub struct App {}
@@ -25,7 +25,7 @@ impl Component for App {
     fn view(&self) -> Html {
         html! {
             <Layout>
-                <Router />
+                <NotFound />
             </Layout>
         }
     }

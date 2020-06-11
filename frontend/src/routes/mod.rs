@@ -13,12 +13,8 @@ pub use profile::Profile;
 pub enum AppRoutes {
     #[to = "/profile"]
     Profile,
-    #[to = "/404"]
-    NotFound(Permissive<String>),
-    #[to = "/"]
+    #[to = "/!"]
     Home,
-    // #[to = MatcherToken::Exact("/")]
-    // Home,
-    // #[to = "/{*:any}"]
-    // NotFound(Permissive<String>),
+    #[to = "/{*:any}"]
+    NotFound(Permissive<String>),
 }

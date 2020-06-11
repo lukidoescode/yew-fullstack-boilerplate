@@ -1,17 +1,23 @@
 use crate::routes::{AppRoutes, Home, Profile};
 // use std::marker::PhantomData;
-use yew::{html, Component, ComponentLink, Html, ShouldRender};
+use yew::{html, Component, ComponentLink, Html, Properties, ShouldRender};
 use yew_router::switch::Permissive;
-use yew_router::{route::Route, router::Router as YewRouter};
+use yew_router::{route::Route as YewRoute, router::Router as YewRouter};
 
-pub struct Router {}
+#[derive(Properties, Clone, PartialEq)]
+pub struct Props {}
 
-impl Component for Router {
+pub struct Router<NotFound: Component + 'static> {
+    props: Props,
+    link: ComponentLink<Self>,
+}
+
+impl<NotFound: Component + 'static> Component for Router<NotFound> {
     type Message = ();
-    type Properties = ();
+    type Properties = Props;
 
-    fn create(_: Self::Properties, _link: ComponentLink<Self>) -> Self {
-        Self {}
+    fn create(props: Self::Properties, link: ComponentLink<Self>) -> Self {
+        Self { props, link }
     }
 
     fn update(&mut self, _msg: Self::Message) -> ShouldRender {
@@ -27,13 +33,13 @@ impl Component for Router {
             <YewRouter<AppRoutes>
                 render=YewRouter::render(|switch: AppRoutes| {
                     match switch {
-                        AppRoutes::Home => html!{<Home />},
-                        AppRoutes::Profile => html!{<Profile />},
-                        AppRoutes::NotFound(Permissive(None)) => html!{"Page not found"},
-                        AppRoutes::NotFound(Permissive(Some(missed_route))) => html!{format!("Page '{}' not found", missed_route)}
+                        AppRoutes::Home => html!{ <Home /> },
+                        AppRoutes::Profile => html!{ <Profile /> },
+                        AppRoutes::NotFound(Permissive(None)) => html!{ <NotFound /> },
+                        AppRoutes::NotFound(Permissive(Some(_missed_route))) => html!{ <NotFound /> },
                     }
                 })
-                redirect = YewRouter::redirect(|route: Route| {
+                redirect = YewRouter::redirect(|route: YewRoute| {
                     AppRoutes::NotFound(Permissive(Some(route.route)))
                 })
             />

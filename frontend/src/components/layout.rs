@@ -4,8 +4,10 @@ mod header;
 use css_in_rust::Style;
 use footer::Footer;
 use header::Header;
-use yew::prelude::*;
-use yew::{html, Classes, Component, ComponentLink, Html, Properties, ShouldRender};
+use yew::{
+    html, html::Renderable, Children, Classes, Component, ComponentLink, Html, Properties,
+    ShouldRender,
+};
 
 /// Site layout.
 pub struct Layout {
